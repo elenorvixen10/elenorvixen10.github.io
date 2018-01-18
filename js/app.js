@@ -2,7 +2,7 @@ window.onload = function () {
   characters = {
     kitty2: {
       div: document.getElementById("kitty2"),
-      name: "Astronaught Kitty"
+      name: "Astronaut Kitty"
     },
     kitty1: {
       div: document.getElementById("kitty1"),
