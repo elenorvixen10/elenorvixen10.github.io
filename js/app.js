@@ -1,96 +1,79 @@
 window.onload = function () {
   characters = {
-    homer: {
-      div: document.getElementById("homer"),
-      audio: new Audio("media/burp.wav"),
-      name: "Homer Simpson"
+    kitty2: {
+      div: document.getElementById("kitty2"),
+      name: "Astronaught Kitty"
     },
-    peter: {
-      div: document.getElementById("peter"),
-      audio: new Audio("media/laugh.mp3"),
-      name: "Peter Griffin"
+    kitty1: {
+      div: document.getElementById("kitty1"),
+      name: "Space Kitty"
     },
-    chicken: {
-      div: document.getElementById("chicken"),
-      width: document.getElementById("chicken").offsetWidth,
-      audio: new Audio("media/Angry-chicken.mp3")
+    yarn: {
+      div: document.getElementById("yarn"),
+      width: document.getElementById("yarn").offsetWidth,
     }
   };
-  startClucking();
   activateButtons();
 };
 
 
 var characters = {};
 
-function startClucking(){
-  // play Audio ad infinitum
-  characters.chicken.audio.addEventListener("ended", function() {
-    this.currentTime = 0;
-    this.play();
-  }, false);
-  characters.chicken.audio.play();
-};
 
 function activateButtons(){
-  //toggle button turns chicken sound on/off
-  document.getElementById("audio").onclick = function() {
-    !characters.chicken.audio.paused ? characters.chicken.audio.pause() : characters.chicken.audio.play();
-  };
-  //click the "catch it" button to start the characters
   document.getElementById("go").onclick = function(){
     startGame(characters);
   };
 };
 
 function startGame(characters){
-  // start players and chicken on left
-  characters.homer.div.style.left = 0;
-  characters.peter.div.style.left = 0;
-  characters.chicken.div.style.left = 0;
+  // start players and yarn on left
+  characters.kitty2.div.style.left = 0;
+  characters.kitty1.div.style.left = 0;
+  characters.yarn.div.style.left = 0;
 
   // stop initial animations
   document.getElementById("go").className = "";
   document.getElementsByTagName("img").className = "";
 
-  moveChicken();
+  moveYarn();
 
   document.onkeydown = function(key) {
-    characters.homer.position = parseInt(characters.homer.div.style.left, 10);
-    characters.peter.position = parseInt(characters.peter.div.style.left, 10);
+    characters.kitty2.position = parseInt(characters.kitty2.div.style.left, 10);
+    characters.kitty1.position = parseInt(characters.kitty1.div.style.left, 10);
     checkWinner();
     movePlayer(key)
   };
 };
 
-function moveChicken(){
-  characters.chicken.position = parseInt(characters.chicken.div.style.left, 10);
+function moveYarn(){
+  characters.yarn.position = parseInt(characters.yarn.div.style.left, 10);
   setInterval(function(){
-    var newVal = characters.chicken.position += 40;
-    if(newVal <= window.innerWidth - characters.chicken.width){
-      characters.chicken.div.style.left = newVal + "px";
+    var newVal = characters.yarn.position += 40;
+    if(newVal <= window.innerWidth - characters.yarn.width){
+      characters.yarn.div.style.left = newVal + "px";
     }
   }, 100);
 };
 
 function checkWinner(){
-  if (characters.homer.position + characters.homer.div.offsetWidth >= window.innerWidth - 40) {
-    setWinState(characters.homer, characters);
+  if (characters.kitty2.position + characters.kitty2.div.offsetWidth >= window.innerWidth - 40) {
+    setWinState(characters.kitty2, characters);
   };
-  if (characters.peter.position + characters.peter.div.offsetWidth >= window.innerWidth - 40) {
-    setWinState(characters.peter, characters);
+  if (characters.kitty1.position + characters.kitty1.div.offsetWidth >= window.innerWidth - 40) {
+    setWinState(characters.kitty1, characters);
   };
 };
 
 function movePlayer(key) {
   switch(key.which) {
-    case 90: // press z to make homer go
-      var newHomerPosition = characters.homer.position += 40;
-      characters.homer.div.style.left = newHomerPosition + "px";
+    case 77: 
+      var newkitty2Position = characters.kitty2.position += 40;
+      characters.kitty2.div.style.left = newkitty2Position + "px";
       break;
-    case 39: // press right arrow to make peter go
-      var newPeterPosition = characters.peter.position += 40;
-      characters.peter.div.style.left = newPeterPosition + "px";
+    case 88: 
+      var newkitty1Position = characters.kitty1.position += 40;
+      characters.kitty1.div.style.left = newkitty1Position + "px";
       break;
   };
 };
@@ -98,11 +81,16 @@ function movePlayer(key) {
 function setWinState(player, characters){
   // stop players from moving
   document.onkeydown = null;
-  // display winner and win image
-  var img = document.createElement("img");
-  img.setAttribute("id", "dinner");
-  img.src = "imgs/winnerwinnerchickendinner.png";
-  document.getElementById("container").appendChild(img);
   document.getElementsByTagName("h1")[0].innerText = player.name + " Wins!!!!";
-  player.audio.play();
+  var button = document.getElementById("go")
+  var title = document.getElementById("game-name")
+  title.style.color="red"
+  button.value = "Reset"
+  button.onclick = function(){
+    startGame(characters);
+    button.value = "Chase the yarn!"
+    document.getElementsByTagName("h1")[0].innerText = "Kitty Krawler!";
+    title.style.color="black"
+  };
 }
+

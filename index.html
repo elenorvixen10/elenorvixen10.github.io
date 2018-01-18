@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/app.js"></script>
-	<title>Chiggen Chase</title>
+	<title>Kitty Krawler</title>
 </head>
 <body>
 	<div id="container">
 		<header>
-			<p id="homer-instructions">Tap Z to make Homer run!</p>
-			<p id="peter-instructions">Tap &rarr; to make Peter run!</p>
-			<h1 class="animated slideInLeft reset-animation">Chiggen Chase</h1>
-			<input class="animated infinite pulse" type="button" value="Catch it!" id="go"></input>
+			<p id="kitty2-instructions">Tap X to make Space Kitty move!</p>
+			<p id="kitty1-instructions">Tap M to make Astronaut Kitty move!</p>
+			<h1 class="animated slideInLeft reset-animation" id="game-name">Kitty Krawler!</h1>
+			<input class="animated infinite pulse" type="button" value="Chase the yarn!" id="go"></input>
 			<!-- <input type="button" value="Start Over!" id="reset"></input> -->
-			<input type="button" value="Clucking On/Off" id="audio"></input>
 		</header>
 		<div class="race">
-			<img class="animated rollIn player reset-animation" id="peter" src="imgs/peter.png"></img>
-			<img class="animated rollIn reset-animation" id="chicken" src="imgs/chicken.png">
-			<img class="animated rollIn player reset-animation" id="homer" src="imgs/homer.png"></img>
+			<img class="animated rollIn player reset-animation" id="kitty1" src="imgs/kitty1.png"></img>
+			<img class="animated rollIn reset-animation" id="yarn" src="imgs/yarn.png">
+			<img class="animated rollIn player reset-animation" id="kitty2" src="imgs/kitty2.png"></img>
 		</div>
 	</div>
 </body>
